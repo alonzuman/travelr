@@ -4,7 +4,7 @@ import Spinner from '../../components/Spinner';
 import { logout } from '../../actions';
 import { Redirect } from 'react-router-dom';
 
-export default function Dashboard() {
+export default function Home() {
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth);
   const { isLoading, user, isAuth } = auth;

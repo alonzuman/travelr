@@ -11,10 +11,12 @@ connectDB()
 app.use(cors());
 app.use(express.json());
 
-// Routes
+// Auth Routes
 app.use('/api/v1/auth', require('./routes/api/auth'));
 app.use('/api/v1/users', require('./routes/api/users'));
-app.use('/api/v1/tours', require('./routes/api/tours'));
+
+// Volunteering Hours Routes
+app.use('/api/v1/jobs', require('./routes/api/jobs'));
 
 // Initialization
 

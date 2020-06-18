@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 
 // Pages
-import Discover from './Pages/Discover/Discover';
+import Home from './Pages/Home/Home';
 import Dashboard from './Pages/Dashboard/Dashboard';
-import Tour from './Pages/Tour/Tour';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Components
@@ -38,8 +37,7 @@ function App() {
       {alert.isOn && <Alert />}
       <Switch>
         <div className='container'>
-        <Route exact path='/' component={Discover} />
-        <Route path='/tours/:id' component={Tour} />
+        <Route exact path='/' component={Home} />
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />

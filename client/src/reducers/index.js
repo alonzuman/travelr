@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { authReducer } from './authReducer';
 import { alertReducer } from './alertReducer';
-import { tourReducer } from './tourReducer';
+import { jobReducer } from './jobReducer';
 
 export default combineReducers({
   auth: authReducer,
   alert: alertReducer,
-  tours: tourReducer
+  jobs: jobReducer,
 });

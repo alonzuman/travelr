@@ -10,9 +10,9 @@ export default function Navbar() {
   return (
     <div>
       <ul>
-        <li><NavLink to='/'>Discover</NavLink></li>
         {isAuth &&
         <Fragment>
+          <li><NavLink to='/'>Home</NavLink></li>
           <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
         </Fragment>}
         {!isAuth &&

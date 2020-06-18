@@ -1,3 +1,4 @@
+const Job = require('./Job');
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
@@ -21,10 +22,13 @@ const UserSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
-  isGuide: {
+  isAdmin: {
     type: Boolean,
     required: true,
     default: false
+  },
+  Jobs: {
+    type: Array
   }
 })
 

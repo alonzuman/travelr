@@ -1,3 +1,3 @@
 export * from './authActions';
 export * from './alertActions';
-export * from './tourActions';
+export * from './jobActions';
