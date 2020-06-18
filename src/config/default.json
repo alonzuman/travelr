@@ -1,0 +1,4 @@
+{
+  "MONGO_URI": "mongodb+srv://alonzuman:alonzuman@travelr-rwv9a.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "JWT_SECRET": "81a5b5350efa8acb4c1033d7e9740f504670b5405dbc4506802b0857545240f4b3f95f41ee58e9e0e6f721370bf02e634ef9ebbbc5c38418aa4c73b98b767387"
+}
