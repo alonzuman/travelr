@@ -17,7 +17,6 @@ export const authReducer = (state = initialState, action) => {
       }
     case 'REGISTER_SUCCESS':
     case 'LOGIN_SUCCESS':
-    localStorage.setItem('token', payload.token)
       return {
         ...state,
         isAuth: true,

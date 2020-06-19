@@ -39,6 +39,7 @@ export const login = (user) => async dispatch => {
   try {
     const res = await axios.post('/api/v1/users/login', user, config);
     const token = res.data.token;
+    localStorage.setItem('token', token)
     dispatch({
       type: 'LOGIN_SUCCESS',
       payload: {
@@ -49,8 +50,7 @@ export const login = (user) => async dispatch => {
     dispatch(loadUser());
   } catch (error) {
     // console.log(error.response.data.msg);
-    dispatch({ type: 'AUTH_ERROR' });
-    dispatch(setAlert({ msg: error.response.data.msg, color: 'danger' }));
+    dispatch(setAlert({ msg: 'Auth error', color: 'danger' }));
     // TODO Set alerts
   }
 }

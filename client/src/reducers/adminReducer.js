@@ -19,7 +19,7 @@ export const adminReducer = (state = initialState, action) => {
     case 'SET_USER':
       return {
         ...state,
-        user: payload,
+        user: {user: payload.user, jobs: payload.jobs},
         isLoading: false
       }
     case 'SET_USERS':

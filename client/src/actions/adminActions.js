@@ -8,7 +8,7 @@ export const getUser = (id) => async dispatch => {
     const res = await axios.get(`/api/v1/users/${id}`);
     dispatch({
       type: 'SET_USER',
-      payload: res.data
+      payload: {user: res.data.user, jobs: res.data.jobs}
     })
   } catch (error) {
     dispatch({ type: 'SET_ALERT', payload: {msg: 'Failed to fetch user', color: 'danger' }})

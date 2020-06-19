@@ -10,6 +10,7 @@ export const jobReducer = (state = initialState, action) => {
   switch (type) {
     case 'LOAD_HOURS':
     case 'LOAD_JOBS':
+    case 'LOAD_APPROVAL':
       return {
         ...state,
         isLoading: true

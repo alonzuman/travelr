@@ -3,7 +3,7 @@ import axios from 'axios';
 export const setTotalHours = (jobs) => dispatch => {
   let hours = 0;
   jobs.forEach(job => {
-    if (!job.isApproved) {
+    if (job.approved) {
       return hours += job.hours
     }
   })
@@ -52,5 +52,51 @@ export const getMyJobs = () => async dispatch => {
   } catch (error) {
     console.log(error);
     // SET_ALERT
+  }
+}
+
+export const approveJob = (id) => async dispatch => {
+  dispatch({
+    type: 'LOAD_APPROVAL'
+  });
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem('token')
+      }
+    }
+
+    const res = await axios.post(`/api/v1/jobs/${id}/approve`, config);
+    console.log(res.data);
+    // SET_ALERTS
+    dispatch({ type: 'SET_ALERT', payload: {msg: 'Approved!', color: 'success'} })
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: 'SET_ALERT', payload: {msg: 'Error', color: 'danger'} })
+    // SET_ALERTS
+  }
+}
+
+export const unapproveJob = (id) => async dispatch => {
+  dispatch({
+    type: 'LOAD_APPROVAL'
+  });
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem('token')
+      }
+    }
+
+    const res = await axios.post(`/api/v1/jobs/${id}/unapprove`, config);
+    console.log(res.data);
+    // SET_ALERTS
+    dispatch({ type: 'SET_ALERT', payload: { msg: 'Approved!', color: 'success' } })
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: 'SET_ALERT', payload: { msg: 'Error', color: 'danger' } })
+    // SET_ALERTS
   }
 }

@@ -8,7 +8,7 @@ export default function Stats() {
 
   useEffect(() => {
     dispatch(setTotalHours(myJobs))
-  }, [myJobs])
+  }, [myJobs, isLoading])
 
   return (
     <div>
