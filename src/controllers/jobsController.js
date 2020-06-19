@@ -50,4 +50,26 @@ const deleteJob = async (req, res) => res.json({
   jobs
 });
 
-module.exports = { getAllJobs, getMyJobs, addJob, deleteJob }
+const approveJob = async (req, res) => {
+  try {
+    let job = await Job.findById({ _id: req.params.id });
+    job.approved = true;
+    await job.save();
+    res.status(201).json({ msg: 'Job approved!' })
+  } catch (error) {
+    res.status(500).json({ msg: 'Server Error' })
+  }
+}
+
+const unapproveJob = async (req, res) => {
+  try {
+    let job = await Job.findById({ _id: req.params.id });
+    job.approved = false;
+    await job.save();
+    res.status(201).json({ msg: 'Job approved!' })
+  } catch (error) {
+    res.status(500).json({ msg: 'Server Error' })
+  }
+}
+
+module.exports = { unapproveJob, approveJob, getAllJobs, getMyJobs, addJob, deleteJob }
