@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 
 // Pages
-import Home from './Pages/Home/Home';
+import Add from './Pages/Add/Add';
+import User from './Pages/User/User';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from './actions'
 import setAuthToken from './utils/setAuthToken';
+import Admin from './Pages/Admin/Admin';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -37,10 +39,12 @@ function App() {
       {alert.isOn && <Alert />}
       <Switch>
         <div className='container'>
-        <Route exact path='/' component={Home} />
-        <Route path='/dashboard' component={Dashboard} />
+        <Route exact path='/' component={Dashboard} />
+        <Route path='/users/:id' component={User} />
+        <Route path='/add' component={Add} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
+        <Route path='/admin' component={Admin} />
         </div>
       </Switch>
     </Router>

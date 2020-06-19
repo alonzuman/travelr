@@ -1,12 +1,7 @@
-const User = require('./User');
 const mongoose = require('mongoose');
 
 const JobSchema = new mongoose.Schema({
-  startTime: {
-    type: Date,
-    required: true
-  },
-  endTime: {
+  date: {
     type: Date,
     required: true
   },
@@ -14,11 +9,18 @@ const JobSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  hours: {
+    type: Number,
+    required: true,
+  },
   approved: {
     type: Boolean,
     default: false
   },
-  volunteer: User
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users'
+  }
 })
 
 module.exports = Job = mongoose.model('job', JobSchema);

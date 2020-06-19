@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AddJob from '../../Modals/AddJob/AddJob';
 import { Redirect } from 'react-router-dom';
 
-export default function Home() {
+export default function Add() {
   const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
@@ -13,7 +13,7 @@ export default function Home() {
   if (auth.isAuth) {
     return (
       <div>
-        Home Page
+        Add Page
         <AddJob />
       </div>
     )

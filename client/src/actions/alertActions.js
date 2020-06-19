@@ -1,15 +1,14 @@
-export const setAlert = ({msg, color, id}) => dispatch => {
+export const setAlert = ({msg, color}) => dispatch => {
   dispatch({
     type: 'SET_ALERT',
     payload: {
       msg,
-      color,
-      id
+      color
     }
   })
   setTimeout(() => {
     dispatch(clearAlert());
-  }, 25000);
+  }, 5000);
 }
 
 export const clearAlert = () => dispatch => {

@@ -67,4 +67,54 @@ const userLogin = async (req, res) => {
   }
 }
 
-module.exports = { userRegister, userLogin }
+const makeAdmin = async (req, res) => {
+  try {
+    const user = await User.findById({_id: req.params.id});
+    const admin = await User.findById({_id: req.user.id});
+    if (admin.isAdmin) {
+      user.isAdmin = true;
+      await user.save()
+    } else {
+      return res.status(400).json({msg: 'Not authorized'})
+    }
+    res.status(201).json({ msg: `${user.firstName} is now an admin`, user })
+  } catch (error) {
+    res.status(500).json({ msg: 'Server Error' })
+  }
+}
+
+const removeAdmin = async (req, res) => {
+  try {
+    const user = await User.findById({ _id: req.params.id });
+    const admin = await User.findById({ _id: req.user.id });
+    if (admin.isAdmin) {
+      user.isAdmin = false;
+      await user.save()
+    } else {
+      return res.status(400).json({ msg: 'Not authorized' })
+    }
+    res.status(201).json({ msg: `${user.firstName} is no longer an admin` })
+  } catch (error) {
+    res.status(500).json({ msg: 'Server Error' })
+  }
+}
+
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({ users })
+  } catch (error) {
+    res.status(500).json({ msg: 'Server Error' })
+  }
+}
+
+const getUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.status(200).json(user)
+  } catch (error) {
+    res.status(500).json({ msg: 'Server Error' })
+  }
+}
+
+module.exports = { getUser, getAllUsers, userRegister, userLogin, makeAdmin, removeAdmin }

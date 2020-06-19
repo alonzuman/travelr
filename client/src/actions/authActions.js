@@ -81,7 +81,6 @@ export const register = (user) => async dispatch => {
     // console.log(error.response.data.msg);
     dispatch({ type: 'AUTH_ERROR' });
     dispatch(setAlert({ msg: error.response.data.msg, color: 'danger' }));
-    // TODO Set alerts
   }
 }
 

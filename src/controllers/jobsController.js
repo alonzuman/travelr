@@ -1,33 +1,42 @@
 const User = require('../models/User');
-const jobs = [
-  { id: 1, title: 'Consequat incididunt non deserunt proident eu tempor magna duis qui ea cillum ullamco.', username: 'Kyle' },
-  { id: 2, title: 'Quis amet eu consectetur velit labore.', username: 'alonzuman' },
-  { id: 3, title: 'Occaecat do sint cupidatat amet esse.', username: 'alonzuman' },
-]
+const Job = require('../models/Job');
 
 const getAllJobs = async (req, res) => res.json({
-  jobs
+  // jobs
 });
 
-const getMyJobs = async (req, res) => res.json({
-  jobs
-});
+const getMyJobs = async (req, res) => {
+  try {
+    let user = await User.findById(req.user.id).select('-password');
+    const jobs = await Job.find({user: user.id});
+    res.status(200).json({
+      jobs
+    })
+  } catch (error) {
+    res.status(500).json({
+      msg: `Server Error`
+    })
+  }
+};
 
 const addJob = async (req, res) => {
-  try {
-    let user = await User.findById(req.body.id);
-    const job = new Job({
-     id: Math.random(),
-     description: 'Velit non qui commodo laboris sit.',
-     startTime: Date.now(),
-     endTime: Date.now() + 1,
-     volunteer: user
-   })
 
-   await job.save();
+  try {
+    const job = req.body.job
+    let user = await User.findById(req.user.id).select('-password');
+    const newJob = new Job({
+      description: job.description,
+      date: job.date,
+      hours: job.hours,
+      user: user
+    })
+
+   await newJob.save();
+   await user.jobs.push(newJob);
+   await user.save()
    return res.status(200).json({
      msg: 'Added new job!',
-     job
+     newJob
    })
   } catch (error) {
     console.log(error);
